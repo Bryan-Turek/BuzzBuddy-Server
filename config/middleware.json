@@ -1,0 +1,26 @@
+{
+    "middleware": {
+        
+      "appsec": {
+        "csrf": false,
+        "csp": false,
+        "p3p": false,
+        "xframe": "SAMEORIGIN"
+      },
+//
+//      "compiler": {
+//          "dust": "templates",
+//          "less": "css"
+//      },
+//
+      "session": {
+          "module": "memory",
+          "secret": "644729319d6e386e6e41ad7bf70dfe0059b63637"
+      }
+//
+//      "static": {
+//          "srcRoot": "path:./public",
+//          "rootPath": "path:./.build"
+//      }
+    }
+}
