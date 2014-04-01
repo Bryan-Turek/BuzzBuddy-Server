@@ -8,9 +8,13 @@ var kraken = require('kraken-js'),
     express = require('express'),
     flash = require('connect-flash'),
     lusca = require('lusca'),
+    User = require('./models/user'),
     app = {};
 
 app.configure = function configure(nconf, next) {
+    //Configure the database
+    db.config(nconf.get('databaseConfig'));
+    
     //Tell passport to use our newly created local strategy for authentication
     passport.use(auth.localStrategy());
 
@@ -20,12 +24,11 @@ app.configure = function configure(nconf, next) {
     });
 
     passport.deserializeUser(function (id, done) {
-        User.findOne({_id: id}, function (err, user) {
+        User.findById(id, function (err, user) {
             done(null, user);
         });
     });
-    //Configure the database
-    db.config(nconf.get('databaseConfig'));
+    
     next(null);
 };
 

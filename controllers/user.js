@@ -1,13 +1,14 @@
 'use strict';
 
 
-var User = require('../models/user');
+var User = require('../models/user'),
+    passport = require('passport');
 
 
 module.exports = function (app) {
 
     app.get('/user/:id', function (req, res) {
-        User.findOne(req.params.id, function(err, user) {
+        User.findById(req.params.id, function(err, user) {
             if(err) {
                console.log(err);
             }
@@ -32,5 +33,7 @@ module.exports = function (app) {
             }
         });
     });
-
+    app.post('/user/login', passport.authenticate('local'), function(req, res) {
+        res.json(req.user);
+    });
 };

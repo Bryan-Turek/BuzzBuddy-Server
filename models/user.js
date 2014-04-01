@@ -9,7 +9,7 @@ var UserModel = function() {
     
     var UserSchema = mongoose.Schema({
         email: {type: String, required: true, unique: true}, //Ensure emails are unique and require them.
-        password: {type: String, required: true, select: false},
+        password: {type: String, required: true},
         phone: {type: String, required: true},
         username: {type: String, required: true},
         name: String,
@@ -44,8 +44,14 @@ var UserModel = function() {
     });
 
     UserSchema.methods.passwordMatches = function (plainText) {
-        var user = this;
-        return bcrypt.compareSync(plainText, user.password);
+        var user = this
+        return bcrypt.compareSync(plainText, user.password)
+    }
+    
+    UserSchema.methods.toJSON = function() {
+        var obj = this.toObject()
+        delete obj.password
+        return obj
     }
   
     return mongoose.model('User', UserSchema);
