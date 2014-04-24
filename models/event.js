@@ -13,6 +13,10 @@ var EventModel = function() {
         startsOn: {type: Date, required: true},
         endsOn: {type: Date, required: true},
         owner: {type: Schema.Types.ObjectId, ref: 'User'},
+        coords: {
+            lat: Number,
+            lng: Number
+        },
         privacy: String
     });
 
