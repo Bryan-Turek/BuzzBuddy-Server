@@ -10,8 +10,8 @@ var UserModel = function() {
     var UserSchema = mongoose.Schema({
         email: {type: String, required: true, unique: true}, //Ensure emails are unique and require them.
         password: {type: String, required: true},
-        phone: {type: String, required: true},
-        username: {type: String},
+        phone: String,
+        username: String,
         name: String,
         role: {type: String, default: 'user'},
         created: {type: Date, default: new Date()},
