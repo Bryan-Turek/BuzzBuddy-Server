@@ -8,6 +8,7 @@ var EventModel = function() {
     var EventSchema = mongoose.Schema({
         name: {type: String, required: true}, //Ensure emails are unique and require them.
         description: {type: String, required: true},
+        category: {type: String, required: true},
         created: {type: Date, default: new Date()},
         startsOn: {type: Date, required: true},
         endsOn: {type: Date, required: true},

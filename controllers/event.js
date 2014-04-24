@@ -15,7 +15,7 @@ module.exports = function (app) {
         });
     });
     app.get('/events/:id', function (req, res) {
-        Event.findOne(req.params.id, function(err, event) {
+        Event.findOneById(req.params.id, function(err, event) {
             if(err) {
                console.log(err);
             }
